@@ -35,4 +35,3 @@ Go to ```http://<host>/webservice/rest/products```
 | Software | Version |
 | --- | --- |
 | Pimcore | 5.7.0 |
-| Coreshop | 2.0 |
