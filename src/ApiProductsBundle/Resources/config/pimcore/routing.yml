@@ -1,0 +1,4 @@
+api_products:
+    resource: "@ApiProductsBundle/Controller/"
+    type:     annotation
+    prefix:   /

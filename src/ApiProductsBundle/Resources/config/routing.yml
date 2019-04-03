@@ -1,0 +1,3 @@
+api_products_homepage:
+    path:     /
+    defaults: { _controller: ApiProductsBundle:Default:index }
