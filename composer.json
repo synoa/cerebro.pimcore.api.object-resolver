@@ -1,7 +1,7 @@
 {
   "name": "synoa/apiproducts",
   "description": "Pimcore Extension which is extending webservice to fetch multiple products with detailed information at once",
-  "version" : "1.0.1",
+  "version" : "1.0.0",
   "type": "pimcore-bundle",
   "require": {
     "pimcore/pimcore": "^5.7.0"
