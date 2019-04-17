@@ -20,12 +20,13 @@ composer config unset repositories.synoa_productsapi
 
 # How to use
 
-Go to ```http://<host>/webservice/rest/products```
+Go to ```http://<host>/webservice/rest/synoa/objects```
 
 ## Params
 
 | Param | Description | Type | Constrain | Default value |
 | --- | --- | --- | --- | --- |
+| objectClass | The object class, eg. product | string | | |
 | last_modified | An timestamp for getting products where modification date is greater than given timestamp | int | <nobr>```value >= 0```</nobr> | 0 |
 | limit | Limit the count of results in the response | int | <nobr>```value > 0```</nobr><br><nobr>```value < 100```</nobr>| 10 |
 | offset | Skip results to get to next page | int | <nobr>```value >= 0```</nobr> | 0 |
