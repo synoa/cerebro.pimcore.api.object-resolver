@@ -24,7 +24,7 @@ class DefaultController extends AbstractElementController
     }
 
     /**
-     * @Route("/webservice/rest/products")
+     * @Route("/webservice/rest/synoa/objects")
      */
     public function indexAction(Request $request, ValidatorInterface $validator)
     {
@@ -33,6 +33,7 @@ class DefaultController extends AbstractElementController
 
         // getting request params and setting default values
         $requestParams = array(
+            'objectClass' => $request->get('objectClass', ""),
             'last_modified' => $request->get('last_modified', "0"),
             'offset' => $request->get('offset', "0"),
             'limit' => $request->get('limit', "10"),
@@ -40,6 +41,9 @@ class DefaultController extends AbstractElementController
 
         // setting up validation constraints
         $constraints = new Assert\Collection([
+            'objectClass' => [
+                new Assert\NotBlank()
+            ],
             'last_modified' => [
                 new Assert\GreaterThanOrEqual(0),
                 new Assert\Type('digit')
@@ -66,13 +70,17 @@ class DefaultController extends AbstractElementController
                 $messages[] = $validationError->getPropertyPath() . ': ' . $validationError->getMessage();
             }
             return $this->createErrorResponse(array('msg' => 'Validation Error', 'data' => $messages), Response::HTTP_BAD_REQUEST);
-            return new Response("Validation Error - " . json_encode($messages));
         }
 
         // getting products
+        $objectClassName = '\\Pimcore\\Model\\DataObject\\' . ucfirst($requestParams['objectClass']);
+        if (!\Pimcore\Tool::classExists($objectClassName)) {
+            return $this->createErrorResponse(array('msg' => 'object class does not exist'), Response::HTTP_BAD_REQUEST);
+        }
 
+        $listClassName = $objectClassName . '\\Listing';
 
-        $entries = new DataObject\Product\Listing();
+        $entries = new $listClassName;
         $entries->addConditionParam('o_modificationDate > ?', $requestParams['last_modified']);
         $entries->setLimit($requestParams['limit']);
         $entries->setOffset($requestParams['offset']);
