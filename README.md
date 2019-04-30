@@ -1,13 +1,13 @@
 # Description
 
-This Extension for pimcore is adding a new route ```/webservice/rest/products``` which delivers multiple products with detailed information. The extension is returning the products data object which is created by the Coreshop extension for Pimcore.
+This Extension for pimcore is adding a new route ```/webservice/rest/products``` which delivers multiple objects with detailed information.
 
 # Installation
 
 Install with composer
 
 ```
-composer config repositories.synoa_productsapi git https://github.com/synoa/cerebro.pimcore.api.products.poc.git
+composer config repositories.synoa_apiproducts git https://github.com/synoa/cerebro.pimcore.api.products.poc.git
 COMPOSER_MEMORY_LIMIT=-1 composer require synoa/apiproducts
 ```
 
@@ -15,7 +15,7 @@ COMPOSER_MEMORY_LIMIT=-1 composer require synoa/apiproducts
 
 ```
 COMPOSER_MEMORY_LIMIT=-1 composer remove synoa/apiproducts
-composer config unset repositories.synoa_productsapi
+composer config unset repositories.synoa_apiproducts
 ```
 
 # How to use
