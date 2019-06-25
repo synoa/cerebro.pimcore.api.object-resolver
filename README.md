@@ -30,6 +30,7 @@ Go to ```http://<host>/webservice/rest/synoa/objects```
 | last_modified | An timestamp for getting products where modification date is greater than given timestamp | int | <nobr>```value >= 0```</nobr> | 0 |
 | limit | Limit the count of results in the response | int | <nobr>```value > 0```</nobr><br><nobr>```value < 100```</nobr>| 10 |
 | offset | Skip results to get to next page | int | <nobr>```value >= 0```</nobr> | 0 |
+| q | Please look up in [Pimcore Filter documentation](https://pimcore.com/docs/5.x/Development_Documentation/Web_Services/Query_Filters.html) |
 
 # Dependencies
 
