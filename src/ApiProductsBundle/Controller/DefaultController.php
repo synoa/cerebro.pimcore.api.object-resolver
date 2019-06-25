@@ -2,8 +2,6 @@
 
 namespace ApiProductsBundle\Controller;
 
-use CoreShop\Bundle\ProductBundle\Pimcore\Repository\ProductRepository;
-use CoreShop\Component\Core\Repository\ProductRepositoryInterface;
 use Pimcore\Bundle\AdminBundle\Controller\Rest\Element\AbstractElementController;
 use Pimcore\Model\DataObject;
 use Pimcore\Model\Webservice\Data\Mapper;
@@ -13,10 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Pimcore\Event\Webservice\FilterEvent;
 
 class DefaultController extends AbstractElementController
 {
-//    protected $repository;
 
     public function __construct(Service $service)
     {
@@ -80,7 +78,14 @@ class DefaultController extends AbstractElementController
 
         $listClassName = $objectClassName . '\\Listing';
 
+        $condition = $this->buildCondition($request);
+        $eventData = new FilterEvent($request, 'object', 'list', $condition);
+        $this->dispatchBeforeLoadEvent($request, $eventData);
+        $condition = $eventData->getCondition();
+
+        /** @var \Pimcore\Model\DataObject\MyClass\Listing $entries */
         $entries = new $listClassName;
+        $entries->setCondition($condition);
         $entries->addConditionParam('o_modificationDate > ?', $requestParams['last_modified']);
         $entries->setLimit($requestParams['limit']);
         $entries->setOffset($requestParams['offset']);
