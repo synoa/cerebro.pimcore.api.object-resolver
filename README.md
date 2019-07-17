@@ -7,7 +7,7 @@ This Extension for pimcore is adding a new route ```/webservice/rest/products```
 Install with composer
 
 ```
-composer config repositories.synoa_apiproducts git https://github.com/synoa/cerebro.pimcore.api.products.poc.git
+composer config repositories.synoa_apiproducts git https://github.com/synoa/cerebro.pimcore.api.object-resolver.git
 COMPOSER_MEMORY_LIMIT=-1 composer require synoa/apiproducts
 ```
 
