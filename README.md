@@ -20,7 +20,15 @@ composer config unset repositories.synoa_apiproducts
 
 # How to use
 
-Go to ```http://<host>/webservice/rest/synoa/objects```
+## Create a static route
+
+| Name | Pattern | Bundle | Controller | Action |
+| --- | --- | --- | --- | --- |
+| choose a meaningfull name like ```synoa REST``` | ```#/webservice/rest/synoa/objects#``` | ApiProductsBundle | Index | Index |
+
+:point_right: The ```#``` sign is important in the Pattern
+
+Go to your static route ```http://<host>/webservice/rest/synoa/objects```
 
 ## Params
 
